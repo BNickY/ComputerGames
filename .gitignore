@@ -1,28 +1,35 @@
-# Compiled class file
-*.class
+*.java.hsp
+*.sonarj
+*.sw*
+.DS_Store
+.settings
+.springBeans
+bin
+build.sh
+integration-repo
+ivy-cache
+jxl.log
+jmx.log
+derby.log
+spring-test/test-output/
+.gradle
+argfile*
+pom.xml
+activemq-data/
 
-# Log file
-*.log
+classes/
+/build
+buildSrc/build
+/spring-*/build
+/src/asciidoc/build
+target/
 
-# BlueJ files
-*.ctxt
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
-*.jar
-*.war
-*.ear
-*.zip
-*.tar.gz
-*.rar
-
-# Intellij project files
+# IDEA artifacts and output dirs
 *.iml
 *.ipr
 *.iws
-.idea/
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
+.idea
+out
+test-output
+atlassian-ide-plugin.xml
+.gradletasknamecache
