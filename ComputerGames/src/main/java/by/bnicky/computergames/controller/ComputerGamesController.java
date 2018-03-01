@@ -4,7 +4,7 @@
 package by.bnicky.computergames.controller;
 
 import by.bnicky.computergames.entities.Developer;
-import by.bnicky.computergames.exceptions.ResourceNoContentExceprion;
+import by.bnicky.computergames.exceptions.ResourceNoContentException;
 import by.bnicky.computergames.exceptions.ResourceNotFoundException;
 import by.bnicky.computergames.service.DeveloperServiceImpl;
 import org.slf4j.Logger;
@@ -126,7 +126,7 @@ public class ComputerGamesController {
         }
         else if(developers.size() == 0) {
             logger.error(messageSource.getMessage("developerNotFound",null,locale));
-            throw new ResourceNoContentExceprion(messageSource.getMessage("developerNotFound",null,locale));
+            throw new ResourceNoContentException(messageSource.getMessage("developerNotFound",null,locale));
         }
         logger.info(messageSource.getMessage("sendDeveloper",new String[]{country}, locale));
         return ResponseEntity.ok().body(developers);
@@ -148,7 +148,7 @@ public class ComputerGamesController {
         }
         else if(developers.size() == 0) {
             logger.error(messageSource.getMessage("developerNotFound",null,locale));
-            throw new ResourceNoContentExceprion(messageSource.getMessage("developerNotFound",null,locale));
+            throw new ResourceNoContentException(messageSource.getMessage("developerNotFound",null,locale));
         }
         logger.info(messageSource.getMessage("sendDeveloper",new String[]{"all"}, locale));
         return ResponseEntity.ok().body(developers);
