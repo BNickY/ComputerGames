@@ -1,3 +1,6 @@
+/**
+ * Developer.java
+ */
 package by.bnicky.computergames.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -6,6 +9,9 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.*;
 
+/**
+ * @author Nick Korp
+ */
 @Entity
 @NamedNativeQueries({
         @NamedNativeQuery(name = "Developer.deleteByName",
@@ -28,8 +34,14 @@ public class Developer implements Serializable{
     private String developerSite;
     private List<Game> developerGames = new ArrayList<>(0);
 
+    /**
+     * Builds a new object of Developer
+     */
     public Developer(){}
 
+    /**
+     * @return the developer id
+     */
     @Id
     @SequenceGenerator(name="developer_sequence", sequenceName="serial_developers", allocationSize=1)
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="developer_sequence")
@@ -38,50 +50,81 @@ public class Developer implements Serializable{
         return developerId;
     }
 
+    /**
+     * @param developerId the developer id to set
+     */
     public void setDeveloperId(Long developerId) {
         this.developerId = developerId;
     }
 
+    /**
+     * @return the developer name
+     */
     @Basic
     @Column(name = "developer_name", nullable = false)
     public String getDeveloperName() {
         return developerName;
     }
 
+    /**
+     * @param developerName the developer name to set
+     */
     public void setDeveloperName(String developerName) {
         this.developerName = developerName;
     }
 
+    /**
+     * @return the developer location
+     */
     @Basic
     @Column(name = "developer_location")
     public String getDeveloperLocation() {
         return developerLocation;
     }
 
+    /**
+     * @param developerLocation the developer location to set
+     */
     public void setDeveloperLocation(String developerLocation) {
         this.developerLocation = developerLocation;
     }
 
+    /**
+     * @return the developer site
+     */
     @Basic
     @Column(name = "developer_site")
     public String getDeveloperSite() {
         return developerSite;
     }
 
+    /**
+     * @param developerSite the developer site to set
+     */
     public void setDeveloperSite(String developerSite) {
         this.developerSite = developerSite;
     }
 
+    /**
+     * @return the developer games
+     */
     @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "developer", cascade = CascadeType.ALL)
     public List<Game> getDeveloperGames() {
         return developerGames;
     }
 
+    /**
+     * @param developerGames the developer games to set
+     */
     public void setDeveloperGames(List<Game> developerGames) {
         this.developerGames = developerGames;
     }
 
+    /*
+     * (non-Javadoc)
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -90,11 +133,19 @@ public class Developer implements Serializable{
         return Objects.equals(developerName, developer.developerName);
     }
 
+    /*
+     * (non-Javadoc)
+     * @see java.lang.Object#hashCode()
+     */
     @Override
     public int hashCode() {
         return Objects.hash(developerName);
     }
 
+    /*
+     * (non-Javadoc)
+     * @see java.lang.Object#toString()
+     */
     @Override
     public String toString() {
         return "Developer{" +

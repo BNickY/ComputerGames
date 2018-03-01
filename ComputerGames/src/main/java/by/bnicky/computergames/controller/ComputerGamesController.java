@@ -1,10 +1,12 @@
+/**
+ * ComputerGamesController.java
+ */
 package by.bnicky.computergames.controller;
-
 
 import by.bnicky.computergames.entities.Developer;
 import by.bnicky.computergames.exceptions.ResourceNoContentExceprion;
 import by.bnicky.computergames.exceptions.ResourceNotFoundException;
-import by.bnicky.computergames.services.DeveloperServiceImpl;
+import by.bnicky.computergames.service.DeveloperServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * @author Nick Korp
+ */
 @RestController
 @RequestMapping(value = "/computergames")
 public class ComputerGamesController {
@@ -30,6 +35,12 @@ public class ComputerGamesController {
         this.messageSource = messageSource;
     }
 
+    /**
+     * Returns message about successful create
+     * @param locale - current locale
+     * @param developer - the object of {@link Developer}
+     * @return String
+     */
     @RequestMapping(value = "/dev", method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<String> createDeveloper(Locale locale, @RequestBody Developer developer){
@@ -39,6 +50,13 @@ public class ComputerGamesController {
         return ResponseEntity.ok().body(messageSource.getMessage("developerCreated",new Long[]{id},locale));
     }
 
+    /**
+     * Returns message about successful update
+     * @param locale - current locale
+     * @param id - id of the developer that needs to be updated
+     * @param developer - the object of {@link Developer}
+     * @return String
+     */
     @RequestMapping(value = "/dev/{id}", method = RequestMethod.PUT)
     @ResponseBody
     public ResponseEntity<String> updateDeveloper(Locale locale, @PathVariable("id") Long id, @RequestBody Developer developer) {
@@ -53,7 +71,12 @@ public class ComputerGamesController {
         return ResponseEntity.ok().body(messageSource.getMessage("developerUpdated",new Long[]{id},locale));
     }
 
-
+    /**
+     * Returns the object of {@link Developer} from database
+     * @param locale - current locale
+     * @param id - id of the developer
+     * @return Developer
+     */
     @RequestMapping(value = "/dev/id/{id}", method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<Developer> getDeveloperById(Locale locale, @PathVariable("id") Long id) {
@@ -67,6 +90,12 @@ public class ComputerGamesController {
         return ResponseEntity.ok().body(developer);
     }
 
+    /**
+     * Returns the object of {@link Developer} from database
+     * @param locale - current locale
+     * @param name - name of the developer
+     * @return Developer
+     */
     @RequestMapping(value = "/dev/name/{name}", method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<Developer> getDeveloperByName(Locale locale, @PathVariable("name") String name) {
@@ -80,6 +109,12 @@ public class ComputerGamesController {
         return ResponseEntity.ok().body(developer);
     }
 
+    /**
+     * Returns the array of objects of {@link Developer} from database
+     * @param locale - current locale
+     * @param country - developers country
+     * @return List<Developer>
+     */
     @RequestMapping(value = "/dev/country/{country}", method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<List<Developer>> getDeveloperByCountry(Locale locale,@PathVariable("country") String country) {
@@ -97,6 +132,11 @@ public class ComputerGamesController {
         return ResponseEntity.ok().body(developers);
     }
 
+    /**
+     * Returns the array of objects of {@link Developer} from database
+     * @param locale - current locale
+     * @return List<Developer>
+     */
     @RequestMapping(value = "/dev/all", method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<List<Developer>> getAllDevelopers(Locale locale){
@@ -114,7 +154,12 @@ public class ComputerGamesController {
         return ResponseEntity.ok().body(developers);
     }
 
-
+    /**
+     * Returns message about successful delete
+     * @param locale - current locale
+     * @param id - id of the developer
+     * @return String
+     */
     @RequestMapping(value = "/dev/id/{id}", method = RequestMethod.DELETE)
     @ResponseBody
     public ResponseEntity<String> deleteDeveloperById(Locale locale, @PathVariable("id") Long id) {
@@ -128,6 +173,12 @@ public class ComputerGamesController {
         return ResponseEntity.ok().body(messageSource.getMessage("deleteDeveloper",new Long[]{id},locale));
     }
 
+    /**
+     * Returns message about successful delete
+     * @param locale - current locale
+     * @param name - name of the developer
+     * @return String
+     */
     @RequestMapping(value = "/dev/name/{name}", method = RequestMethod.DELETE)
     @ResponseBody
     public ResponseEntity<String> deleteDeveloperByName(Locale locale, @PathVariable("name") String name) {
